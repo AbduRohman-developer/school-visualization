@@ -1,9 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
 
+
+	errors.New("Something went wrong")
 	fmt.Print("Some")
 	// ajslkdfjeroigj
 	// dskjg

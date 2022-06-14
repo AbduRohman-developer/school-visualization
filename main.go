@@ -4,6 +4,8 @@ import (
 	"fmt"
 )
 
+// version 0.1
+
 func main() {
 	// teacher initial values as string, we are going to append values later
 	ts := make([]teacher, 10)

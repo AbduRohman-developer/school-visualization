@@ -1,5 +1,7 @@
 package main
 
+// version 0.1
+
 type school struct {
 	name     string
 	director director

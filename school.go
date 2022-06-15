@@ -1,11 +1,11 @@
 package main
 
-// version 0.1
+// version 0.2
 
 type school struct {
 	name     string
 	director director
-	classes  []class
+	cls      []class
 }
 
 type director struct {
@@ -14,22 +14,20 @@ type director struct {
 }
 
 type teacher struct {
-	name      string
-	age       string
-	className string
+	Name      string `json:"name"`
+	Age       int    `json:"age"`
+	ClassName string `json:"className"`
 }
 
 type class struct {
-	name        string
-	teacherName string
+	Name        string `json:"name"`
+	TeacherName string `json:"teacherName"`
 }
 
-type classes []class
-
 type pupil struct {
-	name        string
-	age         string
-	mark        string
-	parentsName string
-	className   string
+	Name        string `json:"name"`
+	Age         int    `json:"age"`
+	Mark        int    `json:"mark"`
+	ParentsName string `json:"parentsName"`
+	ClassName   string `json:"className"`
 }

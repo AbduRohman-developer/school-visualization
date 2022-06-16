@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // version 0.2
 
@@ -22,29 +24,31 @@ func pupilLog(ps *[]pupil, cls []class) {
 		fmt.Println("can't find the name")
 		return
 	}
-	fmt.Print(`
+	for {
+		fmt.Print(`
 		1 - see my mark
 		2 - see my teacher and class
 		3 - change class
 		4 - nothing
 	`)
-	cmd := 0
-	_, err = fmt.Scan(&cmd)
-	if err != nil {
-		panic("can't")
-	}
-	p := pupil{}
-	switch cmd {
-	case 1:
-		p.viewMark(name, ps)
-	case 2:
-		p.viewTeacher(name, cls, ps)
-	case 3:
-		p.changeClass(cls, name, ps)
-	case 4:
-		return
-	default:
-		panic("cheater!")
+		cmd := 0
+		_, err = fmt.Scan(&cmd)
+		if err != nil {
+			panic("can't")
+		}
+		p := pupil{}
+		switch cmd {
+		case 1:
+			p.viewMark(name, ps)
+		case 2:
+			p.viewTeacher(name, cls, ps)
+		case 3:
+			p.changeClass(cls, name, ps)
+		case 4:
+			return
+		default:
+			panic("cheater!")
+		}
 	}
 }
 

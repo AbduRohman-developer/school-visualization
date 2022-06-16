@@ -8,7 +8,8 @@ import (
 
 func (dr director) directorLog(ts *[]teacher, ps *[]pupil, cls *[]class) {
 	defer cleanUp()
-	fmt.Print(`
+	for {
+		fmt.Print(`
 		1 - view what we have 
 		2 - add teacher
 		3 - add class
@@ -16,29 +17,30 @@ func (dr director) directorLog(ts *[]teacher, ps *[]pupil, cls *[]class) {
 		5 - remove class
 		6 - nothing
 	`)
-	fmt.Println("What do you want to do -->")
-	cmd := 0
-	_, err := fmt.Scan(&cmd)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	switch cmd {
-	case 1:
-		dr.viewStat(cls, ps)
-	case 2:
-		dr.addTeacher(ts, cls)
-	case 3:
-		dr.addClass(ts, cls)
-	case 4:
-		dr.removeTeacher(ts, cls)
-	case 5:
-		dr.removeClass(ts, cls, ps)
-	case 6:
-		return
-	default:
-		fmt.Println("command not found")
-		return
+		fmt.Println("What do you want to do -->")
+		cmd := 0
+		_, err := fmt.Scan(&cmd)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		switch cmd {
+		case 1:
+			dr.viewStat(cls, ps)
+		case 2:
+			dr.addTeacher(ts, cls)
+		case 3:
+			dr.addClass(ts, cls)
+		case 4:
+			dr.removeTeacher(ts, cls)
+		case 5:
+			dr.removeClass(ts, cls, ps)
+		case 6:
+			return
+		default:
+			fmt.Println("command not found")
+			return
+		}
 	}
 }
 
@@ -199,8 +201,10 @@ func (dr director) addTeacher(ts *[]teacher, cls *[]class) {
 	_, err = fmt.Scan(&t.ClassName)
 	if err != nil {
 		fmt.Println("Type properly! error = ", err)
+		print("err")
 		return
 	} else if t.ClassName == "not" {
+		print("not")
 		t.ClassName = ""
 		*ts = append(*ts, t)
 		return
@@ -208,6 +212,7 @@ func (dr director) addTeacher(ts *[]teacher, cls *[]class) {
 	for i := range *cls {
 		if (*cls)[i].Name == t.ClassName {
 			(*cls)[i].TeacherName = t.Name
+			*ts = append(*ts, t)
 			return
 		}
 	}

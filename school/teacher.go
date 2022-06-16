@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // version 0.2
 
@@ -23,33 +25,36 @@ func teacherLog(ts *[]teacher, ps *[]pupil, cls *[]class) {
 		fmt.Println("There is not teacher with this name :(")
 		return
 	}
-	fmt.Println("What do you want to do --> ")
-	fmt.Print(`
+	for {
+		fmt.Println("What do you want to do --> ")
+		fmt.Print(`
 			1 - list of pupils
 			2 - add pupil
 			3 - remove pupil
 			4 - mark pupils
 			5 - nothing to do(exit)
 	`)
-	choice := 0
-	_, err = fmt.Scan(&choice)
-	if err != nil {
-		fmt.Println("can't read input")
-		return
-	}
-	switch choice {
-	case 1:
-		t.viewStat(name, ps, cls)
-	case 2:
-		t.addPupil(ps, name, cls)
-	case 3:
-		t.removePupil(ps, name, cls)
-	case 4:
-		t.mark(ps, name, cls)
-	case 5:
-		return
-	default:
-		fmt.Println("can't find command")
+		choice := 0
+		_, err = fmt.Scan(&choice)
+		if err != nil {
+			fmt.Println("can't read input")
+			return
+		}
+		switch choice {
+		case 1:
+			t.viewStat(name, ps, cls)
+		case 2:
+			t.addPupil(ps, name, cls)
+		case 3:
+			t.removePupil(ps, name, cls)
+		case 4:
+			t.mark(ps, name, cls)
+		case 5:
+			return
+		default:
+			fmt.Println("can't find command")
+			return
+		}
 	}
 }
 func (t teacher) viewStat(name string, ps *[]pupil, cls *[]class) {
@@ -192,7 +197,7 @@ func check(cls *[]class, name string) (string, error) {
 				fmt.Println((*cls)[i].Name)
 			}
 		}
-		fmt.Println("Type class name to see list --> ")
+		fmt.Println("Type class name --> ")
 		_, err = fmt.Scan(&clname)
 		if err != nil {
 			fmt.Println("can't find class")
